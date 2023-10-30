@@ -1,0 +1,7 @@
+"ClientCertificates": [
+      {
+        "SourceType": "KeyVault",
+        "KeyVaultUrl": "https://winntemplateapp6vault.vault.azure.net",
+        "KeyVaultCertificateName": "WinnTemplateApp6vault"
+      }
+     ]

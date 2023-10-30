@@ -1,0 +1,21 @@
+﻿@model Winn_BOA_Cash_Pro.Models.FedWire
+
+<h4>Transaction information</h4>
+<div class="row">
+    <div class="col-4 form-group">
+        <label asp-for="TransferAmount" class="control-label">Transfer Amount</label>
+        <input asp-for="TransferAmount" class="form-control" />
+        <span asp-validation-for="TransferAmount" class="text-danger"></span>
+    </div>
+        <div class="col form-group">
+        <label asp-for="Description" class="control-label">Transaction Description</label>
+        <input asp-for="Description" class="form-control" maxlength="35" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="col form-group">
+        <label asp-for="ToBankCity" class="control-label">To Bank City</label>
+        <input asp-for="ToBankCity" class="form-control" />
+        <span asp-validation-for="ToBankCity" class="text-danger"></span>
+    </div>
+</div>
+<hr />

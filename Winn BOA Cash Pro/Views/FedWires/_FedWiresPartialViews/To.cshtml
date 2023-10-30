@@ -1,0 +1,32 @@
+﻿@model Winn_BOA_Cash_Pro.Models.FedWire
+
+<h4>To Information</h4>
+
+<div class="row">
+    <div class="col-6 form-group">
+    <label asp-for="ToAccountName" class="control-label">To Account Name</label>
+    <input asp-for="ToAccountName" class="form-control" />
+    <span asp-validation-for="ToAccountName" class="text-danger"></span>
+</div>
+
+    <div class="col form-group">
+    <label asp-for="ToBankName" class="control-label">To Bank Name</label>
+    <input asp-for="ToBankName" class="form-control" />
+    <span asp-validation-for="ToBankName" class="text-danger"></span>
+</div>
+
+</div>
+<div class="row">
+    <div class="col-6 form-group">
+    <label asp-for="ToAccountNumber" class="control-label">To Account Number</label>
+    <input asp-for="ToAccountNumber" class="form-control" />
+    <span asp-validation-for="ToAccountNumber" class="text-danger"></span>
+</div>
+
+    <div class="col form-group">
+    <label asp-for="ToAbanumber" class="control-label">To ABA Number</label>
+    <input asp-for="ToAbanumber" class="form-control" minlength="9" />
+    <span asp-validation-for="ToAbanumber" class="text-danger"></span>
+</div>
+</div>
+<hr />

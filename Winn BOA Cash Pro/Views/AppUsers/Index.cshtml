@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Winn_BOA_Cash_Pro.Models.ViewModels.UserRolesViewModel>
+@{
+    ViewData["Title"] = "App Users";
+}
+<h1>@ViewData["Title"]</h1>
+<form method="post" asp-action="AddAsAdmin" asp-controller="AppUsers" class="row">
+    <div class="row">
+        <div class="col">
+
+            <select id="selEmployee" asp-items="ViewBag.EmployeeList" style="width: 100%;" name="adminEmployeeId">
+                <option></option>
+            </select>
+            <input type="email" class="form-control" id="inpAdminEmail" name="adminEmail" placeholder="Enter Admin's Email" hidden>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Add as Admin</button>
+        </div>
+    </div>
+</form>
+
+<hr />
+<table class="table table-striped compact table-hover table-bordered" id="tblUsers">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Created</th>
+            <th>CreatedBy</th>
+            <th>Roles</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserId</td>
+                <td>@user.Email</td>
+                <td>@user.Created</td>
+                <td>@user.CreatedBy</td>
+                <td>@string.Join(", ", user.Roles.ToList())</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th class="text-input">Email</th>
+            <th>@*Created*@</th>
+            <th class="text-input">CreatedBy</th>
+            <th class="text-input">Roles</th>
+            <th>@*Action*@</th>
+        </tr>
+    </tfoot>
+</table>
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/js/appusers.js")" asp-append-version="true"></script>
+}

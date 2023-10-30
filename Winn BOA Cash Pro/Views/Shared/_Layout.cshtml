@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Winn BOA Cash Pro</title>
+    <link rel="stylesheet" href="~/scss/bootstrap.custom.css" />
+    <link rel="stylesheet" href="https://prssappsstrg.blob.core.windows.net/prsslib/PRSSApplicationCSS.css" />
+    <link rel="stylesheet" href="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/datatables.min.css" />
+    <link rel="stylesheet" href="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/DateTime/css/dataTables.dateTime.min.css" />
+    <link rel="stylesheet" href="https://prssappsstrg.blob.core.windows.net/prsslib/select2/css/select2.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="FedWires" asp-action="Index">Winn BOA Cash Pro</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+@*                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                List All
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Index 1</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Index 2</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Index 3</a>
+                            </div>
+                        </li>*@
+                    </ul>
+                    <partial name="../Shared/_LoginPartial.cshtml" />
+                </div>
+            </div>
+        </nav>
+
+        @if (User.IsInRole("Admin") || User.IsInRole("User"))
+        {
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Admin</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    App Management
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="AppUsers" asp-action="Index">App Users</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="RoleManager" asp-action="Index">App Roles</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        }
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer style="position: absolute; bottom: -30px; left: 0; right: 0; text-align: center;">
+        <img src="https://prssappsstrg.blob.core.windows.net/prssdevappfiles/WinnCompaniesWhiteGreen.png" alt="WinnResidential Logo" />
+        <p>Copyright &copy; @DateTime.Now.Year. WinnCompanies, Inc.<br /><a href="mailto:PRSSHelpdesk@winnco.com">PRSSHelpdesk@winnco.com</a></p>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://prssappsstrg.blob.core.windows.net/prsslib/moment.min.js"></script>
+    <script src="https://prssappsstrg.blob.core.windows.net/prsslib/select2/js/select2.full.min.js"></script>
+    <script src="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/DateTime/js/dataTables.dateTime.min.js"></script>
+    <script src="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/datatables.min.js"></script>
+    <script src="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/sorting/datetime-moment.js"></script>
+    <script src="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/dataRender/datetime.js"></script>
+    <script src="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/dataRender/ellipsis.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+<style>
+
+</style>
+</html>

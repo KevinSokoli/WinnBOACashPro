@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "ignored": "true",
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:ApplicationDbContextConnection"
+    },
+    "secrets2": {
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/WinnTemplateApp6vault",
+      "type": "secrets.keyVault",
+      "connectionId": "VaultUri",
+      "dynamicId": null
+    },
+    "mssql2": {
+      "secretStore": "AzureKeyVault",
+      "type": "mssql.onprem",
+      "connectionId": "ConnectionStrings:DefaultConnection"
+    }
+  }
+}

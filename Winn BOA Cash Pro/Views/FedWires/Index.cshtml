@@ -1,0 +1,149 @@
+﻿@model IEnumerable<Winn_BOA_Cash_Pro.Models.FedWire>
+
+@{
+    ViewData["Title"] = "Fed Wire for BoA CashPro";
+}
+@if (TempData["NoFilesMessage"] != null)
+{
+    <div class="alert alert-info">@TempData["NoFilesMessage"]</div>
+}
+<div class="container">
+    <div class="card shadow" style="margin-top: 20px;">
+        <div class="card-body">
+            <h1 class="card-title">Fed Wire for BoA Cash Pro</h1>
+            <a asp-controller="FedWires" asp-action="Create" class="btn btn-primary" id="Create" name="Create">Create New</a>
+            <a asp-controller="FedWires" asp-action="DownloadDetails" class="btn btn-success">Download File</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped table-hover" id="tblCashPro" style="margin-top: 20px;">
+    <thead>
+        <tr>
+            <th>From Name</th>
+            <th>From Bank</th>
+            <th>From Number</th>
+            <th>From ABA</th>
+            <th>To Name</th>
+            <th>To Bank</th>
+            <th>To Number</th>
+            <th>To ABA</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() == 0)
+        {
+            @for (int i = 0; i < 20; i++)
+            {
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.FromAccountName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FromBankName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FromAccountNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FromAbanumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ToAccountName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ToBankName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ToAccountNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ToAbanumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TransferAmount)</td>
+                    <td>
+                        <div class="btn-group">
+                            <a asp-controller="FedWires" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a asp-controller="FedWires" asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">
+                                <i class="fas fa-info-circle"></i> Details
+                            </a>
+                            <a asp-controller="FedWires" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tblCashPro').DataTable({
+                paging: true,
+                searching: true,
+                ordering: true,
+                responsive: true
+            });
+        });
+    </script>
+}
+
+<style>
+    .container {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 0vh;
+
+    }
+
+    .table-container {
+        flex-grow: 1; /* Allow the table to grow and push the footer down */
+    }
+
+    #tblCashPro thead {
+        background-color: #0F5298; /* Blue background color */
+        color: #fff; /* White text color */
+    }
+
+    #tblCashPro tbody tr {
+        padding: 10px;
+    }
+
+        #tblCashPro tbody tr:hover {
+            background-color: #f2f2f2; /* Light gray background color on hover */
+        }
+
+    .btn-primary {
+        background-color: #0F5298; /* Blue background color */
+        color: #fff; /* White text color */
+    }
+
+        .btn-primary:hover {
+            background-color: #0F5298; /* Slightly darker blue on hover */
+        }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+        font-size: 28px;
+        color: #333;
+    }
+</style>
