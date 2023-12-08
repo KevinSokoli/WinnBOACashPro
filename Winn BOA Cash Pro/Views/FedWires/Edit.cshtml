@@ -3,92 +3,140 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<div style="display: flex; flex-direction: column;align-items: center;">
+    <h1>Edit FedWire</h1>
 
-<h1>Edit</h1>
-
-<h4>FedWire</h4>
+</div>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="FromAccountName" class="control-label"></label>
-                <input asp-for="FromAccountName" class="form-control" />
-                <span asp-validation-for="FromAccountName" class="text-danger"></span>
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="row">
+        <div class="col-6 form-group">
+            <label asp-for="FromAccountName" class="control-label">From Account Name</label>
+            <input asp-for="FromAccountName" class="form-control" />
+            <span asp-validation-for="FromAccountName" class="text-danger"></span>
+        </div>
+        <div class="col form-group">
+            <label asp-for="FromBankName" class="control-label">From Bank Name</label>
+            <input asp-for="FromBankName" class="form-control" />
+            <span asp-validation-for="FromBankName" class="text-danger"></span>
+        </div>
+        <div class="col-6 form-group">
+            <label asp-for="FromAccountNumber" class="control-label">From Account Number</label>
+            <input asp-for="FromAccountNumber" class="form-control" />
+            <span asp-validation-for="FromAccountNumber" class="text-danger"></span>
+        </div>
+        <div class="col form-group">
+            <label asp-for="FromAbanumber" class="control-label">From Aba Number</label>
+            <input asp-for="FromAbanumber" class="form-control" />
+            <span asp-validation-for="FromAbanumber" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-6 form-group">
+            <label asp-for="ToAccountName" class="control-label">To Account Name</label>
+            <input asp-for="ToAccountName" class="form-control" />
+            <span asp-validation-for="ToAccountName" class="text-danger"></span>
+        </div>
+        <div class="col form-group">
+            <label asp-for="ToBankName" class="control-label">To Bank Name</label>
+            <input asp-for="ToBankName" class="form-control" />
+            <span asp-validation-for="ToBankName" class="text-danger"></span>
+        </div>
+        <div class="col-6 form-group">
+            <label asp-for="ToAccountNumber" class="control-label">To Account Number</label>
+            <input asp-for="ToAccountNumber" class="form-control" />
+            <span asp-validation-for="ToAccountNumber" class="text-danger"></span>
+        </div>
+        <div class="col form-group">
+            <label asp-for="ToAbanumber" class="control-label">To Aba Number</label>
+            <input asp-for="ToAbanumber" class="form-control" />
+            <span asp-validation-for="ToAbanumber" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-6 form-group">
+            <label asp-for="TransferAmount" class="control-label">Transfer Amount</label>
+            <input asp-for="TransferAmount" class="form-control" />
+            <span asp-validation-for="TransferAmount" class="text-danger"></span>
+        </div>
+        <div class="col form-group">
+            <label asp-for="Description" class="control-label">Description Line 1</label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        @if (!string.IsNullOrEmpty(Model.Description1))
+        {
+            <div class="col form-group">
+                <label asp-for="Description1" class="control-label">Description Line 2</label>
+                <input asp-for="Description1" class="form-control" />
+                <span asp-validation-for="Description1" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="FromBankName" class="control-label"></label>
-                <input asp-for="FromBankName" class="form-control" />
-                <span asp-validation-for="FromBankName" class="text-danger"></span>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Description2))
+        {
+            <div class="col form-group">
+                <label asp-for="Description2" class="control-label">Description Line 3</label>
+                <input asp-for="Description2" class="form-control" />
+                <span asp-validation-for="Description2" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="FromAccountNumber" class="control-label"></label>
-                <input asp-for="FromAccountNumber" class="form-control" />
-                <span asp-validation-for="FromAccountNumber" class="text-danger"></span>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Description3))
+        {
+            <div class="col form-group">
+                <label asp-for="Description3" class="control-label">Description Line 4</label>
+                <input asp-for="Description3" class="form-control" />
+                <span asp-validation-for="Description3" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="FromAbanumber" class="control-label"></label>
-                <input asp-for="FromAbanumber" class="form-control" />
-                <span asp-validation-for="FromAbanumber" class="text-danger"></span>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Description4))
+        {
+            <div class="col form-group">
+                <label asp-for="Description4" class="control-label">Description Line 5</label>
+                <input asp-for="Description4" class="form-control" />
+                <span asp-validation-for="Description4" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ToAccountName" class="control-label"></label>
-                <input asp-for="ToAccountName" class="form-control" />
-                <span asp-validation-for="ToAccountName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ToBankName" class="control-label"></label>
-                <input asp-for="ToBankName" class="form-control" />
-                <span asp-validation-for="ToBankName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ToAccountNumber" class="control-label"></label>
-                <input asp-for="ToAccountNumber" class="form-control" />
-                <span asp-validation-for="ToAccountNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ToAbanumber" class="control-label"></label>
-                <input asp-for="ToAbanumber" class="form-control" />
-                <span asp-validation-for="ToAbanumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TransferAmount" class="control-label"></label>
-                <input asp-for="TransferAmount" class="form-control" />
-                <span asp-validation-for="TransferAmount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ToBankCity" class="control-label"></label>
+        }
+        <div class="row">
+            <div class="col-6 form-group">
+                <label asp-for="ToBankCity" class="control-label">To Bank City</label>
                 <input asp-for="ToBankCity" class="form-control" />
                 <span asp-validation-for="ToBankCity" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="TransactionStatus" class="control-label"></label>
+            <div class="col form-group">
+                <label asp-for="TransactionStatus" class="control-label">Transaction Status</label>
                 <input asp-for="TransactionStatus" class="form-control" />
                 <span asp-validation-for="TransactionStatus" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
+        </div>
+        <div class="row">
+            <div class="col-6 form-group">
+                <label asp-for="CreatedDate" class="control-label">Created Date</label>
                 <input asp-for="CreatedDate" class="form-control" />
                 <span asp-validation-for="CreatedDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
+            <div class="col form-group">
+                <label asp-for="CreatedBy" class="control-label">Created By</label>
                 <input asp-for="CreatedBy" class="form-control" />
                 <span asp-validation-for="CreatedBy" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        </div>
+        <div class="form-group text-center" style="margin-top: 20px; margin-bottom: 20px;">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+</form>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

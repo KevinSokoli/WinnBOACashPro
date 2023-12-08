@@ -7,8 +7,8 @@
         <input asp-for="TransferAmount" class="form-control" />
         <span asp-validation-for="TransferAmount" class="text-danger"></span>
     </div>
-        <div class="col form-group">
-        <label asp-for="Description" class="control-label">Transaction Description</label>
+    <div class="col form-group">
+        <label asp-for="Description" class="control-label">Description Line 1</label>
         <input asp-for="Description" class="form-control" maxlength="35" />
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
@@ -18,4 +18,46 @@
         <span asp-validation-for="ToBankCity" class="text-danger"></span>
     </div>
 </div>
-<hr />
+<label class="control-label">Check the checkbox to show more Transaction Descriptions<span class="form-text">(If needed)</span></label>
+<label>
+    <input type="checkbox" id="showDescriptionsCheckbox" onchange="toggleDescriptionSections()">
+</label>
+
+<div id="descriptionSections" style="display: none;">
+    <div class="row">
+        <div class="col-3">
+            <label asp-for="Description1" class="control-label">Description Line 2</label>
+            <input asp-for="Description1" class="form-control" maxlength="35" />
+            <span asp-validation-for="Description1" class="text-danger"></span>
+        </div>
+        <div class="col-3">
+            <label asp-for="Description2" class="control-label">Description Line 3</label>
+            <input asp-for="Description2" class="form-control" maxlength="35" />
+            <span asp-validation-for="Description2" class="text-danger"></span>
+        </div>
+        <div class="col-3">
+            <label asp-for="Description3" class="control-label">Description Line 4</label>
+            <input asp-for="Description3" class="form-control" maxlength="35" />
+            <span asp-validation-for="Description3" class="text-danger"></span>
+        </div>
+        <div class="col-3">
+            <label asp-for="Description4" class="control-label">Description Line 5</label>
+            <input asp-for="Description4" class="form-control" maxlength="35" />
+            <span asp-validation-for="Description4" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleDescriptionSections() {
+        var checkbox = document.getElementById('showDescriptionsCheckbox');
+        var descriptionSections = document.getElementById('descriptionSections');
+
+        if (checkbox.checked) {
+            descriptionSections.style.display = 'block';
+        } else {
+            descriptionSections.style.display = 'none';
+        }
+    }
+</script>
+

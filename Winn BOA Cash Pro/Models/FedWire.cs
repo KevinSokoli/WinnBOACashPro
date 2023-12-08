@@ -22,6 +22,15 @@ namespace Winn_BOA_Cash_Pro.Models
         public string TransactionStatus { get; set; } = null!;
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; } = null!;
+        [Display(Name = "Description Line 1")]
         public string Description { get; set; } = null!;
+        [Display(Name = "Description Line 2")]
+        public string? Description1 { get; set; }
+        [Display(Name = "Description Line 3")]
+        public string? Description2 { get; set; }
+        [Display(Name = "Description Line 4")]
+        public string? Description3 { get; set; }
+        [Display(Name = "Description Line 5")]
+        public string? Description4 { get; set; }
     }
 }

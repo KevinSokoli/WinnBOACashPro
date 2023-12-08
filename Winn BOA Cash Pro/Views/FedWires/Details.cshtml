@@ -4,93 +4,80 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>FedWire</h4>
+<div class="container text-center">
+    <h1>FedWire Details</h1>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FromAccountName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FromAccountName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FromBankName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FromBankName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FromAccountNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FromAccountNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FromAbanumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FromAbanumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ToAccountName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ToAccountName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ToBankName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ToBankName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ToAccountNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ToAccountNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ToAbanumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ToAbanumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TransferAmount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TransferAmount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ToBankCity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ToBankCity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TransactionStatus)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TransactionStatus)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
+
+    <dl class="row mx-auto">
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.FromAccountName) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.FromAccountName) </dd>
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.FromBankName) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.FromBankName) </dd>
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.FromAccountNumber) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.FromAccountNumber) </dd>
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.FromAbanumber) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.FromAbanumber) </dd>
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.ToAccountName) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.ToAccountName) </dd>
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.ToBankName) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.ToBankName) </dd>
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.ToAccountNumber) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.ToAccountNumber) </dd>
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.ToAbanumber) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.ToAbanumber) </dd>
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.TransferAmount) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.TransferAmount) </dd>
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.ToBankCity) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.ToBankCity) </dd>
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.TransactionStatus) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.TransactionStatus) </dd>
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.Description) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.Description) </dd>
+
+        @if (!string.IsNullOrEmpty(Model.Description1))
+        {
+            <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.Description1) </dt>
+            <dd class="col-sm-6"> @Html.DisplayFor(model => model.Description1) </dd>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Description2))
+        {
+            <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.Description2) </dt>
+            <dd class="col-sm-6"> @Html.DisplayFor(model => model.Description2) </dd>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Description3))
+        {
+            <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.Description3) </dt>
+            <dd class="col-sm-6"> @Html.DisplayFor(model => model.Description3) </dd>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Description4))
+        {
+            <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.Description4) </dt>
+            <dd class="col-sm-6"> @Html.DisplayFor(model => model.Description4) </dd>
+        }
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.CreatedDate) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.CreatedDate) </dd>
+
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.CreatedBy) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.CreatedBy) </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+    <div class="mt-3">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
 </div>

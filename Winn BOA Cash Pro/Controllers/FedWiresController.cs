@@ -98,7 +98,7 @@ namespace Winn_BOA_Cash_Pro.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FromAccountName,FromBankName,FromAccountNumber,FromAbanumber,ToAccountName,ToBankName,ToAccountNumber,ToAbanumber,TransferAmount,Description,ToBankCity,TransactionStatus,CreatedDate,CreatedBy")] FedWire fedWire)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FromAccountName,FromBankName,FromAccountNumber,FromAbanumber,ToAccountName,ToBankName,ToAccountNumber,ToAbanumber,TransferAmount,Description,Description1,Description2,Description3,Description4,ToBankCity,TransactionStatus,CreatedDate,CreatedBy")] FedWire fedWire)
         {
             if (id != fedWire.Id)
             {
@@ -178,12 +178,12 @@ namespace Winn_BOA_Cash_Pro.Controllers
             if (newFedWires.Any())
             {
                 decimal totalTransferAmount = 0;
-                int totalSumOfLast10Digits = 0;
                 var firstFedWire = newFedWires.First();
                 var combinedTextContent = new StringBuilder();
                 string filler = new string(' ', 39);
                 string Blank = new string(' ', 2);
                 int numberOfIds = newFedWires.Count;
+                long totalSumOfAllToAccountNumbers = 0;
                 combinedTextContent.Append($"SIGNONRECWINNBAFF{Blank}{firstFedWire.CreatedDate.ToString("yyyyMMddhhmmss")}WINNTRSY{filler}\n");
                 foreach (var fedWire in newFedWires)
                 {
@@ -210,9 +210,13 @@ namespace Winn_BOA_Cash_Pro.Controllers
                     string fillerP50 = new string(' ', 25);
                     string fillerP32 = new string(' ', 33);
                     string textContent =
-                    $"CRFBAF820WINNBAFF{Blank1}{formattedFromAccountNumber}FWT{fedWire.CreatedDate.ToString("yyyyMMdd")}USDP0CRF02.1{Blank} \n" +
+                    $"CRFBAF820WINNBAFF{Blank1}{formattedFromAccountNumber}FWT{fedWire.CreatedDate.ToString("yyyyMMdd")}USDT1CRF02.1{Blank} \n" +
                     $"P20WINNBAFF{Blank}{fedWire.CreatedDate.ToString("yyyyMMdd")}FWT{formattedCreatedDate}{fedWire.CreatedDate.ToString("yyyyMMdd")}{fedWire.TransferAmount.ToString("000000000000000.00")}USDD{Blank}C{Blank}CCD{Blank2}\n" +
                     $"P32{Blank11}ADD{formattedDescription}{fillerP32}\n" +
+                    (string.IsNullOrEmpty(fedWire.Description1) ? "" : $"P32{Blank11}ADD{fedWire.Description1.PadLeft(35)}{fillerP32}\n") +
+                    (string.IsNullOrEmpty(fedWire.Description2) ? "" : $"P32{Blank11}ADD{fedWire.Description2.PadLeft(35)}{fillerP32}\n") +
+                    (string.IsNullOrEmpty(fedWire.Description3) ? "" : $"P32{Blank11}ADD{fedWire.Description3.PadLeft(35)}{fillerP32}\n") +
+                    (string.IsNullOrEmpty(fedWire.Description4) ? "" : $"P32{Blank11}ADD{fedWire.Description4.PadLeft(35)}{fillerP32}\n") +
                     $"P40{formattedFromAccountNumber}{formattedFromAbanumber}USDUS{fillerP40}\n" +
                     $"P41FWT{formattedToAbanumber}DA{Blank1}{formattedToAccountNumber}{Blank3}US{Blank4}\n" +
                     $"P42RB{formattedToBankName}{Blank5}{formattedToBankCity}\n" +
@@ -220,31 +224,29 @@ namespace Winn_BOA_Cash_Pro.Controllers
                     $"P53{formattedToAccountName}{Blank7}US{Blank8}\n";
 
                     // Calculate the sum of the last 10 digits for each record
-                    string last10Digits = fedWire.ToAccountNumber.Length >= 10
-                    ? fedWire.ToAccountNumber.Substring(fedWire.ToAccountNumber.Length - 10)
-                    : fedWire.ToAccountNumber;
-                    int sumOfLast10Digits = int.Parse(last10Digits);
-                    totalSumOfLast10Digits += sumOfLast10Digits;
+                    long toAccountNumberValue = 0;
+                    if (long.TryParse(fedWire.ToAccountNumber, out toAccountNumberValue))
+                    {
+                        totalSumOfAllToAccountNumbers += toAccountNumberValue;
+                    }
                     totalTransferAmount += fedWire.TransferAmount;
                     combinedTextContent.Append(textContent);
-
                     fedWire.TransactionStatus = "Processed";
                 }
                 string Blank9 = new string('0', 15);
-                string Blank10 = new string('0', 4);
+                string Blank10 = new string(' ', 4);
                 int totalNumberOfLines = combinedTextContent.ToString().Split('\n').Length;
                 string Numberofphysicalrecordsinfile = totalNumberOfLines.ToString().PadLeft(15, '0');
-                string NumberofP20credittransactions = numberOfIds.ToString().PadLeft(15, '0');;
-                string FileTrailerRecordCount = totalSumOfLast10Digits.ToString().PadLeft(10, '0');
+                string NumberofP20credittransactions = numberOfIds.ToString().PadLeft(15, '0'); ;
+                string FileTrailerRecordCount = totalSumOfAllToAccountNumbers.ToString().Substring(Math.Max(0, totalSumOfAllToAccountNumbers.ToString().Length - 10)).PadLeft(10, '0');
                 long TotalTransferAmount = (long)(totalTransferAmount * 100);
                 string PaymentAmountControlTotal = TotalTransferAmount.ToString("D14").PadLeft(18, '0');
 
 
-                combinedTextContent.Append("P80"+Numberofphysicalrecordsinfile+NumberofP20credittransactions+Blank9+FileTrailerRecordCount + PaymentAmountControlTotal+Blank10);
+                combinedTextContent.Append("P80" + Numberofphysicalrecordsinfile + NumberofP20credittransactions + Blank9 + FileTrailerRecordCount + PaymentAmountControlTotal + Blank10);
 
                 // Save the changes to the database.
                 await _context.SaveChangesAsync();
-
                 // Provide the combined details as a downloadable text file.
                 return File(Encoding.UTF8.GetBytes(combinedTextContent.ToString()), "text/plain", "newFedWireDetails.txt");
             }
