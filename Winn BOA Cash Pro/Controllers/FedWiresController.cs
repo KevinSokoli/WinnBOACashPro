@@ -64,7 +64,7 @@ namespace Winn_BOA_Cash_Pro.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FromAccountName,FromBankName,FromAccountNumber,FromAbanumber,ToAccountName,ToBankName,ToAccountNumber,ToAbanumber,TransferAmount,ToBankCity,Description,TransactionStatus,CreatedDate,CreatedBy")] FedWire fedWire)
+        public async Task<IActionResult> Create([Bind("Id,FromAccountName,FromBankName,FromAccountNumber,FromAbanumber,FromBankZip,FromBankState,FromBankCity,ToAccountName,ToBankName,ToAccountNumber,ToAbanumber,TransferAmount,ToBankCity,ToBankState,ToBankZip,Description,Description1,Description2,Description3,Description4,TransactionStatus,CreatedDate,CreatedBy")] FedWire fedWire)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace Winn_BOA_Cash_Pro.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FromAccountName,FromBankName,FromAccountNumber,FromAbanumber,ToAccountName,ToBankName,ToAccountNumber,ToAbanumber,TransferAmount,Description,Description1,Description2,Description3,Description4,ToBankCity,TransactionStatus,CreatedDate,CreatedBy")] FedWire fedWire)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FromAccountName,FromBankName,FromAccountNumber,FromAbanumber,FromBankZip,FromBankState,FromBankCity,ToAccountName,ToBankName,ToAccountNumber,ToAbanumber,TransferAmount,ToBankCity,ToBankState,ToBankZip,Description,Description1,Description2,Description3,Description4,TransactionStatus,CreatedDate,CreatedBy")] FedWire fedWire)
         {
             if (id != fedWire.Id)
             {
@@ -196,7 +196,10 @@ namespace Winn_BOA_Cash_Pro.Controllers
                     string formattedFromAbanumber = fedWire.FromAbanumber.PadRight(11);
                     string formattedToAbanumber = fedWire.ToAbanumber.PadRight(11);
                     string formattedDescription = fedWire.Description.PadLeft(35);
-                    string formattedCreatedDate = fedWire.CreatedDate.ToString("yyMMddhhmm").PadRight(15);
+                    string formattedCreatedDate = fedWire.CreatedDate.ToString("yyMMddhhmmss").PadRight(15);
+                    string formattedFromBankCity = fedWire.FromBankCity.PadRight(30);
+                    string formattedFromBankZip = fedWire.FromBankZip.PadRight(11);
+                    string formattedToBankZip = fedWire.ToBankZip.PadRight(11);
                     string Blank2 = new string(' ', 3);
                     string Blank1 = new string(' ', 2);
                     string Blank3 = new string(' ', 18);
@@ -209,8 +212,9 @@ namespace Winn_BOA_Cash_Pro.Controllers
                     string fillerP40 = new string(' ', 26);
                     string fillerP50 = new string(' ', 25);
                     string fillerP32 = new string(' ', 33);
+                    string fillerP52 = new string(' ', 32);
                     string textContent =
-                    $"CRFBAF820WINNBAFF{Blank1}{formattedFromAccountNumber}FWT{fedWire.CreatedDate.ToString("yyyyMMdd")}USDT1CRF02.1{Blank} \n" +
+                    $"CRFBAF820WINNBAFF{Blank1}{formattedFromAccountNumber}FWT{fedWire.CreatedDate.ToString("yyyyMMdd")}USDP0CRF02.1{Blank} \n" +
                     $"P20WINNBAFF{Blank}{fedWire.CreatedDate.ToString("yyyyMMdd")}FWT{formattedCreatedDate}{fedWire.CreatedDate.ToString("yyyyMMdd")}{fedWire.TransferAmount.ToString("000000000000000.00")}USDD{Blank}C{Blank}CCD{Blank2}\n" +
                     $"P32{Blank11}ADD{formattedDescription}{fillerP32}\n" +
                     (string.IsNullOrEmpty(fedWire.Description1) ? "" : $"P32{Blank11}ADD{fedWire.Description1.PadLeft(35)}{fillerP32}\n") +
@@ -221,7 +225,9 @@ namespace Winn_BOA_Cash_Pro.Controllers
                     $"P41FWT{formattedToAbanumber}DA{Blank1}{formattedToAccountNumber}{Blank3}US{Blank4}\n" +
                     $"P42RB{formattedToBankName}{Blank5}{formattedToBankCity}\n" +
                     $"P50{formattedFromBankName}{Blank6}US{fillerP50}\n" +
-                    $"P53{formattedToAccountName}{Blank7}US{Blank8}\n";
+                    $"P52{formattedFromBankCity}{fedWire.FromBankState}{formattedFromBankZip}US{fillerP52}\n" +
+                    $"P53{formattedToAccountName}{Blank7}US{Blank8}\n" +
+                    $"P56{formattedToBankCity}{fedWire.ToBankState}{formattedToBankZip}US{fillerP52}\n";
 
                     // Calculate the sum of the last 10 digits for each record
                     long toAccountNumberValue = 0;
@@ -248,7 +254,8 @@ namespace Winn_BOA_Cash_Pro.Controllers
                 // Save the changes to the database.
                 await _context.SaveChangesAsync();
                 // Provide the combined details as a downloadable text file.
-                return File(Encoding.UTF8.GetBytes(combinedTextContent.ToString()), "text/plain", "newFedWireDetails.txt");
+                string fileName = $"WINN_PYMTS_{DateTime.Now.ToString("yyyyMMddHHmmss")}000.txt";
+                return File(Encoding.UTF8.GetBytes(combinedTextContent.ToString()), "text/plain", fileName);
             }
 
             else

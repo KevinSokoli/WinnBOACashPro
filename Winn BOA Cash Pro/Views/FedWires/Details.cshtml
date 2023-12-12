@@ -20,7 +20,12 @@
 
         <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.FromAbanumber) </dt>
         <dd class="col-sm-6"> @Html.DisplayFor(model => model.FromAbanumber) </dd>
-
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.FromBankCity) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.FromBankCity) </dd>
+                <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.FromBankState) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.FromBankState) </dd>
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.FromBankZip) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.FromBankZip) </dd>
         <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.ToAccountName) </dt>
         <dd class="col-sm-6"> @Html.DisplayFor(model => model.ToAccountName) </dd>
 
@@ -32,12 +37,15 @@
 
         <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.ToAbanumber) </dt>
         <dd class="col-sm-6"> @Html.DisplayFor(model => model.ToAbanumber) </dd>
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.ToBankCity) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.ToBankCity) </dd>
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.ToBankState) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.ToBankState) </dd>
+        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.ToBankZip) </dt>
+        <dd class="col-sm-6"> @Html.DisplayFor(model => model.ToBankZip) </dd>
 
         <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.TransferAmount) </dt>
         <dd class="col-sm-6"> @Html.DisplayFor(model => model.TransferAmount) </dd>
-
-        <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.ToBankCity) </dt>
-        <dd class="col-sm-6"> @Html.DisplayFor(model => model.ToBankCity) </dd>
 
         <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.TransactionStatus) </dt>
         <dd class="col-sm-6"> @Html.DisplayFor(model => model.TransactionStatus) </dd>
@@ -76,7 +84,7 @@
         <dd class="col-sm-6"> @Html.DisplayFor(model => model.CreatedBy) </dd>
     </dl>
 
-    <div class="mt-3">
+    <div class="text-center" style="margin-top: 20px; margin-bottom: 20px;">
         <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
     </div>

@@ -33,6 +33,23 @@
             <span asp-validation-for="FromAbanumber" class="text-danger"></span>
         </div>
     </div>
+    <div class="row">
+        <div class="col-5 form-group">
+            <label asp-for="FromBankCity" class="control-label">From Bank City</label>
+            <input asp-for="FromBankCity" class="form-control" />
+            <span asp-validation-for="FromBankCity" class="text-danger"></span>
+        </div>
+        <div class="col-5 form-group">
+            <label asp-for="FromBankState" class="control-label">From Bank State</label>
+            <input asp-for="FromBankState" class="form-control" />
+            <span asp-validation-for="FromBankState" class="text-danger"></span>
+        </div>
+        <div class="col form-group">
+            <label asp-for="FromBankZip" class="control-label">From Bank Zip code</label>
+            <input asp-for="FromBankZip" class="form-control" />
+            <span asp-validation-for="FromBankZip" class="text-danger"></span>
+        </div>
+    </div>
     <hr />
     <div class="row">
         <div class="col-6 form-group">
@@ -54,6 +71,23 @@
             <label asp-for="ToAbanumber" class="control-label">To Aba Number</label>
             <input asp-for="ToAbanumber" class="form-control" />
             <span asp-validation-for="ToAbanumber" class="text-danger"></span>
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-5 form-group">
+            <label asp-for="ToBankCity" class="control-label">To Bank City</label>
+            <input asp-for="ToBankCity" class="form-control" />
+            <span asp-validation-for="ToBankCity" class="text-danger"></span>
+        </div>
+        <div class="col-5 form-group">
+            <label asp-for="ToBankState" class="control-label">To Bank State</label>
+            <input asp-for="ToBankState" class="form-control" />
+            <span asp-validation-for="ToBankState" class="text-danger"></span>
+        </div>
+        <div class="col form-group">
+            <label asp-for="ToBankZip" class="control-label">To Bank Zip code</label>
+            <input asp-for="ToBankZip" class="form-control" />
+            <span asp-validation-for="ToBankZip" class="text-danger"></span>
         </div>
     </div>
     <hr />
@@ -105,12 +139,6 @@
                 <span asp-validation-for="Description4" class="text-danger"></span>
             </div>
         }
-        <div class="row">
-            <div class="col-6 form-group">
-                <label asp-for="ToBankCity" class="control-label">To Bank City</label>
-                <input asp-for="ToBankCity" class="form-control" />
-                <span asp-validation-for="ToBankCity" class="text-danger"></span>
-            </div>
             <div class="col form-group">
                 <label asp-for="TransactionStatus" class="control-label">Transaction Status</label>
                 <input asp-for="TransactionStatus" class="form-control" />

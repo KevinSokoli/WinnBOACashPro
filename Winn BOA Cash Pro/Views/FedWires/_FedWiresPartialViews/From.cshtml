@@ -29,4 +29,21 @@
             </div>
 
         </div>
+        <div class="row">
+    <div class="col-5 form-group">
+        <label asp-for="FromBankCity" class="control-label">From Bank City</label>
+        <input asp-for="FromBankCity" class="form-control"/>
+        <span asp-validation-for="FromBankCity" class="text-danger"></span>
+    </div>
+    <div class="col-5 form-group">
+        <label asp-for="FromBankState" class="control-label">From Bank State</label>
+        <input asp-for="FromBankState" class="form-control" />
+        <span asp-validation-for="FromBankState" class="text-danger"></span>
+    </div>
+    <div class="col form-group">
+        <label asp-for="FromBankZip" class="control-label">From Bank Zip code</label>
+        <input asp-for="FromBankZip" class="form-control" />
+        <span asp-validation-for="FromBankZip" class="text-danger"></span>
+    </div>
+</div>
 <hr />

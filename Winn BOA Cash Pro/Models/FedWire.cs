@@ -17,7 +17,7 @@ namespace Winn_BOA_Cash_Pro.Models
         public string ToAccountNumber { get; set; } = null!;
         public string ToAbanumber { get; set; } = null!;
         public decimal TransferAmount { get; set; }
-        //[Display(Name = "To Bank City")]
+        [Display(Name = "To Bank City")]
         public string ToBankCity { get; set; } = null!;
         public string TransactionStatus { get; set; } = null!;
         public DateTime CreatedDate { get; set; }
@@ -32,5 +32,15 @@ namespace Winn_BOA_Cash_Pro.Models
         public string? Description3 { get; set; }
         [Display(Name = "Description Line 5")]
         public string? Description4 { get; set; }
+        [Display(Name = "From Bank Zip code")]
+        public string FromBankZip { get; set; } = null!;
+        [Display(Name = "From Bank State")]
+        public string FromBankState { get; set; } = null!;
+        [Display(Name = "From Bank City")]
+        public string FromBankCity { get; set; } = null!;
+        [Display(Name = "To Bank Zip code")]
+        public string ToBankZip { get; set; } = null!;
+        [Display(Name = "To Bank State")]
+        public string ToBankState { get; set; } = null!;
     }
 }
