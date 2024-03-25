@@ -6,9 +6,9 @@
     <title>@ViewData["Title"] - Winn BOA Cash Pro</title>
     <link rel="stylesheet" href="~/scss/bootstrap.custom.css" />
     <link rel="stylesheet" href="https://prssappsstrg.blob.core.windows.net/prsslib/PRSSApplicationCSS.css" />
-    <link rel="stylesheet" href="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/datatables.min.css" />
-    <link rel="stylesheet" href="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/DateTime/css/dataTables.dateTime.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
     <link rel="stylesheet" href="https://prssappsstrg.blob.core.windows.net/prsslib/select2/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -25,16 +25,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-@*                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                List All
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Index 1</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Index 2</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Index 3</a>
-                            </div>
-                        </li>*@
                     </ul>
                     <partial name="../Shared/_LoginPartial.cshtml" />
                 </div>
@@ -76,20 +66,29 @@
         <img src="https://prssappsstrg.blob.core.windows.net/prssdevappfiles/WinnCompaniesWhiteGreen.png" alt="WinnResidential Logo" />
         <p>Copyright &copy; @DateTime.Now.Year. WinnCompanies, Inc.<br /><a href="mailto:PRSSHelpdesk@winnco.com">PRSSHelpdesk@winnco.com</a></p>
     </footer>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://prssappsstrg.blob.core.windows.net/prsslib/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
     <script src="https://prssappsstrg.blob.core.windows.net/prsslib/select2/js/select2.full.min.js"></script>
-    <script src="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/DateTime/js/dataTables.dateTime.min.js"></script>
-    <script src="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/datatables.min.js"></script>
-    <script src="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/sorting/datetime-moment.js"></script>
-    <script src="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/dataRender/datetime.js"></script>
-    <script src="https://prssappsstrg.blob.core.windows.net/prsslib/DataTables/dataRender/ellipsis.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.11.5/sorting/datetime-moment.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.11.5/dataRender/ellipsis.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    @section scripts {
+        <script>
+            $(document).ready(function () {
+                $('#tblCashPro').DataTable({
+                    paging: true,
+                    searching: true,
+                    ordering: true,
+                    responsive: true
+                });
+            });
+        </script>
+    }
 </body>
-<style>
-
-</style>
 </html>

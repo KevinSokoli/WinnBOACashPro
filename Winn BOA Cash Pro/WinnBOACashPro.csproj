@@ -18,7 +18,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.2" />
-		<PackageReference Include="Azure.Identity" Version="1.9.0" />
+		<PackageReference Include="datatables.net" Version="2.0.3" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.21" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.21" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.23" />

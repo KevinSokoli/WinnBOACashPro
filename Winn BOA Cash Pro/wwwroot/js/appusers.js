@@ -1,4 +1,5 @@
-﻿$(function () {
+﻿/* eslint-disable @typescript-eslint/no-this-alias */
+$(function () {
     $.fn.dataTable.moment();
     // Setup - add a text input to each footer cell with the text-input css class
     $('#tblUsers tfoot th.text-input').each(function () {

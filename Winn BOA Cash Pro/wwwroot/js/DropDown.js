@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿/* eslint-disable no-empty */
+/* eslint-disable no-undef */
+$(document).ready(function () {
     // Initialize select2 on the "Request Type" dropdown
     $("#selTransactionStatus").select2({
         placeholder: "-- Select a Transaction Status --", // Placeholder text
